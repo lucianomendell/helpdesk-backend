@@ -2,7 +2,7 @@ package com.br.helpdesk.domain.enums;
 
 public enum StatusEnum {
 	
-	ADMIN(0,"ROLE_ADMIN"),CLIENTE(1,"ROLE_CLIENTE"),TECNICO(2,"ROLE_TECNICO");	
+	ABERTO(0,"ABERTO"),ANDAMENTO(1,"ANDAMENTO"),ENCERRADO(2,"ENCERRADO");	
 	
 	private Integer codigo;
 	private String descricao;	
@@ -25,7 +25,7 @@ public enum StatusEnum {
 			}
 		}
 		
-		throw new IllegalArgumentException("Perfil Inválido");
+		throw new IllegalArgumentException("Status Inválido");
 	}
 
 
