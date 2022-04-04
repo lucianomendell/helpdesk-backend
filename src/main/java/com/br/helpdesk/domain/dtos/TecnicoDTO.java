@@ -23,6 +23,13 @@ public class TecnicoDTO implements Serializable {
 	protected LocalDate dataCriacao = LocalDate.now();
 	
 	
+	public TecnicoDTO() {
+		
+		super();
+		addPerfil(PerfilEnum.CLIENTE);
+	}
+	
+	
 	public TecnicoDTO(Tecnico tecnico) {
 		super();
 		this.id = tecnico.getId();
