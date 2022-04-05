@@ -79,4 +79,17 @@ public class TecnicoService {
 		return tecnicoRepository.save(oldObj);
 		
 	}
+
+
+	public void delete(Integer id) {
+		Tecnico obj = findById(id);
+		
+		if(obj.getChamados().size() > 0) {
+			
+			throw new DataIntegrityViolationException("Técnico possui Chamado associado a ele!");
+			
+		}			
+			this.tecnicoRepository.delete(obj);		
+		
+	}
 }
