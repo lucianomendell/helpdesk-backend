@@ -2,6 +2,7 @@ package com.br.helpdesk.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -84,8 +85,8 @@ public class Chamado implements Serializable {
 		return dataFechamento;
 	}
 
-	public void setDataFechamento(LocalDate dataFechamento) {
-		this.dataFechamento = dataFechamento;
+	public void setDataFechamento(LocalDate localDate) {
+		this.dataFechamento = localDate;
 	}
 
 	public PrioridadeEnum getPrioridade() {

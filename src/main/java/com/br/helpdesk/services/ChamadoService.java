@@ -1,5 +1,7 @@
 package com.br.helpdesk.services;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +67,11 @@ public class ChamadoService {
 			chamado.setId(objDTO.getId());
 		}
 		
+		if(objDTO.getStatus().equals(2)) {
+			
+			chamado.setDataFechamento(LocalDate.now());
+		}
+		
 		chamado.setTecnico(tecnico);
 		chamado.setCliente(cliente);
 		
@@ -76,6 +83,19 @@ public class ChamadoService {
 		chamado.setObservacao(objDTO.getObservacao());
 		
 		return chamado;
+	}
+
+
+	public Chamado update(Integer id, @Valid ChamadoDTO objDTO) {
+		objDTO.setId(id);
+		
+		Chamado oldObj = findById(id);
+		
+		//Se existir É invocado uma outro método que realiza o Update
+		oldObj = newChamado(objDTO);				
+		
+		//Por meio do Id o Hibernate compreende que é uma atualização
+		return chamadoRepository.save(oldObj);
 	}
 
 }

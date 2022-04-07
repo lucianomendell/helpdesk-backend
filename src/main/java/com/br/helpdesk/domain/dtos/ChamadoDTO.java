@@ -2,6 +2,7 @@ package com.br.helpdesk.domain.dtos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.validation.constraints.NotNull;
 
