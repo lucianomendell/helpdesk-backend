@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.br.helpdesk.domain.Pessoa;
@@ -26,8 +27,11 @@ public class ClienteService {
 	private PessoaRepository pessoaRepository;
 	
 	
-	public Cliente findById(Integer id) {
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 		
+	
+	public Cliente findById(Integer id) {		
 		Optional<Cliente> Cliente = ClienteRepository.findById(id);
 		
 		return Cliente.orElseThrow(() -> new ObjectNotFoundException("Objeto Não Encontrado! id:"+ id));
@@ -35,14 +39,14 @@ public class ClienteService {
 	}
 
 
-	public List<Cliente> findAll() {
-		
+	public List<Cliente> findAll() {		
 		return ClienteRepository.findAll();
 	}
 
 
 	public Cliente create(ClienteDTO objDTO) {		
 		objDTO.setId(null);	
+		objDTO.setSenha(encoder.encode(objDTO.getSenha()));
 		
 		validaPorCPFeEmail(objDTO);
 		Cliente newObj = new Cliente(objDTO);
